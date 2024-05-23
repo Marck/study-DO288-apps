@@ -1,0 +1,7 @@
+# Default values for nexus-chart.
+# This is a YAML-formatted file.
+
+nexusServiceName: nexus3
+hostname: nexus3-marcknl-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com
+imageName: quay.io/ex288-prep/nexus3:latest
+memoryLimit: 2703Mi 
