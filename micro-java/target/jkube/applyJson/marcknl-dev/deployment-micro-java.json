@@ -1,0 +1,208 @@
+{
+  "apiVersion" : "apps/v1",
+  "kind" : "Deployment",
+  "metadata" : {
+    "annotations" : {
+      "app.openshift.io/vcs-ref" : "micro-config",
+      "app.openshift.io/vcs-uri" : "https://github.com/Marck/study-DO288-apps.git",
+      "jkube.io/git-branch" : "micro-config",
+      "jkube.io/git-commit" : "9d981ea40fcd738b720d892a33d36f96c82fb6af",
+      "jkube.io/git-url" : "https://github.com/Marck/study-DO288-apps.git"
+    },
+    "creationTimestamp" : "2024-05-23T12:40:38Z",
+    "generation" : 1,
+    "labels" : {
+      "app" : "micro-java",
+      "group" : "com.redhat.training.openshift.hello",
+      "provider" : "jkube",
+      "version" : "1.0"
+    },
+    "managedFields" : [ {
+      "apiVersion" : "apps/v1",
+      "fieldsType" : "FieldsV1",
+      "fieldsV1" : {
+        "f:metadata" : {
+          "f:annotations" : {
+            "." : { },
+            "f:app.openshift.io/vcs-ref" : { },
+            "f:app.openshift.io/vcs-uri" : { },
+            "f:jkube.io/git-branch" : { },
+            "f:jkube.io/git-commit" : { },
+            "f:jkube.io/git-url" : { }
+          },
+          "f:labels" : {
+            "." : { },
+            "f:app" : { },
+            "f:group" : { },
+            "f:provider" : { },
+            "f:version" : { }
+          }
+        },
+        "f:spec" : {
+          "f:progressDeadlineSeconds" : { },
+          "f:replicas" : { },
+          "f:revisionHistoryLimit" : { },
+          "f:selector" : { },
+          "f:strategy" : {
+            "f:rollingUpdate" : {
+              "." : { },
+              "f:maxSurge" : { },
+              "f:maxUnavailable" : { }
+            },
+            "f:type" : { }
+          },
+          "f:template" : {
+            "f:metadata" : {
+              "f:labels" : {
+                "." : { },
+                "f:app" : { },
+                "f:group" : { },
+                "f:provider" : { },
+                "f:version" : { }
+              },
+              "f:name" : { }
+            },
+            "f:spec" : {
+              "f:containers" : {
+                "k:{\"name\":\"quarkus\"}" : {
+                  "." : { },
+                  "f:env" : {
+                    "." : { },
+                    "k:{\"name\":\"KUBERNETES_NAMESPACE\"}" : {
+                      "." : { },
+                      "f:name" : { },
+                      "f:valueFrom" : {
+                        "." : { },
+                        "f:fieldRef" : { }
+                      }
+                    }
+                  },
+                  "f:envFrom" : { },
+                  "f:image" : { },
+                  "f:imagePullPolicy" : { },
+                  "f:name" : { },
+                  "f:ports" : {
+                    "." : { },
+                    "k:{\"containerPort\":8080,\"protocol\":\"TCP\"}" : {
+                      "." : { },
+                      "f:containerPort" : { },
+                      "f:name" : { },
+                      "f:protocol" : { }
+                    },
+                    "k:{\"containerPort\":8778,\"protocol\":\"TCP\"}" : {
+                      "." : { },
+                      "f:containerPort" : { },
+                      "f:name" : { },
+                      "f:protocol" : { }
+                    },
+                    "k:{\"containerPort\":9779,\"protocol\":\"TCP\"}" : {
+                      "." : { },
+                      "f:containerPort" : { },
+                      "f:name" : { },
+                      "f:protocol" : { }
+                    }
+                  },
+                  "f:resources" : { },
+                  "f:securityContext" : {
+                    "." : { },
+                    "f:privileged" : { }
+                  },
+                  "f:terminationMessagePath" : { },
+                  "f:terminationMessagePolicy" : { }
+                }
+              },
+              "f:dnsPolicy" : { },
+              "f:restartPolicy" : { },
+              "f:schedulerName" : { },
+              "f:securityContext" : { },
+              "f:terminationGracePeriodSeconds" : { }
+            }
+          }
+        }
+      },
+      "manager" : "okhttp",
+      "operation" : "Update",
+      "time" : "2024-05-23T12:40:38Z"
+    } ],
+    "name" : "micro-java",
+    "namespace" : "marcknl-dev",
+    "resourceVersion" : "4358493536",
+    "uid" : "4ccc89ea-e59a-4569-a278-387b1a3f4264"
+  },
+  "spec" : {
+    "progressDeadlineSeconds" : 600,
+    "replicas" : 1,
+    "revisionHistoryLimit" : 10,
+    "selector" : {
+      "matchLabels" : {
+        "app" : "micro-java",
+        "group" : "com.redhat.training.openshift.hello",
+        "provider" : "jkube"
+      }
+    },
+    "strategy" : {
+      "rollingUpdate" : {
+        "maxSurge" : "25%",
+        "maxUnavailable" : "25%"
+      },
+      "type" : "RollingUpdate"
+    },
+    "template" : {
+      "metadata" : {
+        "labels" : {
+          "app" : "micro-java",
+          "group" : "com.redhat.training.openshift.hello",
+          "provider" : "jkube",
+          "version" : "1.0"
+        },
+        "name" : "micro-java"
+      },
+      "spec" : {
+        "containers" : [ {
+          "env" : [ {
+            "name" : "KUBERNETES_NAMESPACE",
+            "valueFrom" : {
+              "fieldRef" : {
+                "apiVersion" : "v1",
+                "fieldPath" : "metadata.namespace"
+              }
+            }
+          } ],
+          "envFrom" : [ {
+            "configMapRef" : {
+              "name" : "configmap-hello"
+            }
+          } ],
+          "image" : "image-registry.openshift-image-registry.svc:5000/marcknl-dev/micro-java@sha256:fb5fce87a7ad8d7f76a0d036bf2187874980c76858667360e2a3b6a838ab723a",
+          "imagePullPolicy" : "IfNotPresent",
+          "name" : "quarkus",
+          "ports" : [ {
+            "containerPort" : 8080,
+            "name" : "http",
+            "protocol" : "TCP"
+          }, {
+            "containerPort" : 9779,
+            "name" : "prometheus",
+            "protocol" : "TCP"
+          }, {
+            "containerPort" : 8778,
+            "name" : "jolokia",
+            "protocol" : "TCP"
+          } ],
+          "resources" : { },
+          "securityContext" : {
+            "privileged" : false
+          },
+          "terminationMessagePath" : "/dev/termination-log",
+          "terminationMessagePolicy" : "File"
+        } ],
+        "dnsPolicy" : "ClusterFirst",
+        "restartPolicy" : "Always",
+        "schedulerName" : "default-scheduler",
+        "securityContext" : { },
+        "terminationGracePeriodSeconds" : 30
+      }
+    }
+  },
+  "status" : { }
+}

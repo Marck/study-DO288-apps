@@ -1,0 +1,30 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: micro-config
+    jkube.io/git-url: https://github.com/Marck/study-DO288-apps.git
+    app.openshift.io/vcs-uri: https://github.com/Marck/study-DO288-apps.git
+    jkube.io/git-commit: fea8daa858b4f8b33802fab9a6bd2a8fb92d991d
+    jkube.io/git-branch: micro-config
+    prometheus.io/path: /metrics
+    prometheus.io/port: "9779"
+    prometheus.io/scrape: "true"
+  labels:
+    expose: "true"
+    app: micro-java
+    provider: jkube
+    version: "1.0"
+    group: com.redhat.training.openshift.hello
+  name: micro-java
+spec:
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: micro-java
+    provider: jkube
+    group: com.redhat.training.openshift.hello

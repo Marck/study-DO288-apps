@@ -1,0 +1,35 @@
+{
+  "apiVersion" : "v1",
+  "kind" : "ConfigMap",
+  "metadata" : {
+    "creationTimestamp" : "2024-05-23T12:40:38Z",
+    "labels" : {
+      "app" : "micro-java",
+      "group" : "com.redhat.training.openshift.hello",
+      "provider" : "jkube",
+      "version" : "1.0"
+    },
+    "managedFields" : [ {
+      "apiVersion" : "v1",
+      "fieldsType" : "FieldsV1",
+      "fieldsV1" : {
+        "f:metadata" : {
+          "f:labels" : {
+            "." : { },
+            "f:app" : { },
+            "f:group" : { },
+            "f:provider" : { },
+            "f:version" : { }
+          }
+        }
+      },
+      "manager" : "okhttp",
+      "operation" : "Update",
+      "time" : "2024-05-23T12:40:38Z"
+    } ],
+    "name" : "configmap-hello",
+    "namespace" : "marcknl-dev",
+    "resourceVersion" : "4358493522",
+    "uid" : "7b3b87cb-911c-4d78-8024-a10781569593"
+  }
+}

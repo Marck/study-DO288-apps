@@ -1,0 +1,97 @@
+{
+  "apiVersion" : "v1",
+  "kind" : "Service",
+  "metadata" : {
+    "annotations" : {
+      "app.openshift.io/vcs-ref" : "micro-config",
+      "app.openshift.io/vcs-uri" : "https://github.com/Marck/study-DO288-apps.git",
+      "jkube.io/git-branch" : "micro-config",
+      "jkube.io/git-commit" : "9d981ea40fcd738b720d892a33d36f96c82fb6af",
+      "jkube.io/git-url" : "https://github.com/Marck/study-DO288-apps.git",
+      "prometheus.io/path" : "/metrics",
+      "prometheus.io/port" : "9779",
+      "prometheus.io/scrape" : "true"
+    },
+    "creationTimestamp" : "2024-05-23T12:40:37Z",
+    "labels" : {
+      "app" : "micro-java",
+      "expose" : "true",
+      "group" : "com.redhat.training.openshift.hello",
+      "provider" : "jkube",
+      "version" : "1.0"
+    },
+    "managedFields" : [ {
+      "apiVersion" : "v1",
+      "fieldsType" : "FieldsV1",
+      "fieldsV1" : {
+        "f:metadata" : {
+          "f:annotations" : {
+            "." : { },
+            "f:app.openshift.io/vcs-ref" : { },
+            "f:app.openshift.io/vcs-uri" : { },
+            "f:jkube.io/git-branch" : { },
+            "f:jkube.io/git-commit" : { },
+            "f:jkube.io/git-url" : { },
+            "f:prometheus.io/path" : { },
+            "f:prometheus.io/port" : { },
+            "f:prometheus.io/scrape" : { }
+          },
+          "f:labels" : {
+            "." : { },
+            "f:app" : { },
+            "f:expose" : { },
+            "f:group" : { },
+            "f:provider" : { },
+            "f:version" : { }
+          }
+        },
+        "f:spec" : {
+          "f:internalTrafficPolicy" : { },
+          "f:ports" : {
+            "." : { },
+            "k:{\"port\":8080,\"protocol\":\"TCP\"}" : {
+              "." : { },
+              "f:name" : { },
+              "f:port" : { },
+              "f:protocol" : { },
+              "f:targetPort" : { }
+            }
+          },
+          "f:selector" : { },
+          "f:sessionAffinity" : { },
+          "f:type" : { }
+        }
+      },
+      "manager" : "okhttp",
+      "operation" : "Update",
+      "time" : "2024-05-23T12:40:37Z"
+    } ],
+    "name" : "micro-java",
+    "namespace" : "marcknl-dev",
+    "resourceVersion" : "4358493501",
+    "uid" : "15512414-42c9-4d99-a65a-f9572240cfe6"
+  },
+  "spec" : {
+    "clusterIP" : "172.30.92.12",
+    "clusterIPs" : [ "172.30.92.12" ],
+    "ipFamilies" : [ "IPv4" ],
+    "ipFamilyPolicy" : "SingleStack",
+    "ports" : [ {
+      "name" : "http",
+      "port" : 8080,
+      "protocol" : "TCP",
+      "targetPort" : 8080
+    } ],
+    "selector" : {
+      "app" : "micro-java",
+      "group" : "com.redhat.training.openshift.hello",
+      "provider" : "jkube"
+    },
+    "sessionAffinity" : "None",
+    "type" : "ClusterIP",
+    "internalTrafficPolicy" : "Cluster"
+  },
+  "status" : {
+    "loadBalancer" : { }
+  }
+}

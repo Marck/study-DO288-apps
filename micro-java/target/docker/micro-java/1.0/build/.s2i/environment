@@ -1,0 +1,2 @@
+JAVA_APP_DIR=/deployments
+JAVA_OPTIONS=-Dquarkus.http.host=0.0.0.0

@@ -1,0 +1,99 @@
+{
+  "apiVersion" : "route.openshift.io/v1",
+  "kind" : "Route",
+  "metadata" : {
+    "annotations" : {
+      "app.openshift.io/vcs-ref" : "micro-config",
+      "app.openshift.io/vcs-uri" : "https://github.com/Marck/study-DO288-apps.git",
+      "jkube.io/git-branch" : "micro-config",
+      "jkube.io/git-commit" : "fea8daa858b4f8b33802fab9a6bd2a8fb92d991d",
+      "jkube.io/git-url" : "https://github.com/Marck/study-DO288-apps.git"
+    },
+    "creationTimestamp" : "2024-05-23T12:40:38Z",
+    "labels" : {
+      "app" : "micro-java",
+      "group" : "com.redhat.training.openshift.hello",
+      "provider" : "jkube",
+      "version" : "1.0"
+    },
+    "managedFields" : [ {
+      "apiVersion" : "route.openshift.io/v1",
+      "fieldsType" : "FieldsV1",
+      "fieldsV1" : {
+        "f:status" : {
+          "f:ingress" : { }
+        }
+      },
+      "manager" : "openshift-router",
+      "operation" : "Update",
+      "time" : "2024-05-23T12:40:38Z",
+      "subresource" : "status"
+    }, {
+      "apiVersion" : "route.openshift.io/v1",
+      "fieldsType" : "FieldsV1",
+      "fieldsV1" : {
+        "f:metadata" : {
+          "f:annotations" : {
+            "." : { },
+            "f:app.openshift.io/vcs-ref" : { },
+            "f:app.openshift.io/vcs-uri" : { },
+            "f:jkube.io/git-branch" : { },
+            "f:jkube.io/git-commit" : { },
+            "f:jkube.io/git-url" : { }
+          },
+          "f:labels" : {
+            "." : { },
+            "f:app" : { },
+            "f:group" : { },
+            "f:provider" : { },
+            "f:version" : { }
+          }
+        },
+        "f:spec" : {
+          "f:port" : {
+            "." : { },
+            "f:targetPort" : { }
+          },
+          "f:to" : {
+            "f:kind" : { },
+            "f:name" : { },
+            "f:weight" : { }
+          },
+          "f:wildcardPolicy" : { }
+        }
+      },
+      "manager" : "okhttp",
+      "operation" : "Update",
+      "time" : "2024-05-23T12:53:19Z"
+    } ],
+    "name" : "micro-java",
+    "namespace" : "marcknl-dev",
+    "resourceVersion" : "4358528064",
+    "uid" : "0daf457c-efe0-4fc0-92d8-b02c9b9cc9fb"
+  },
+  "spec" : {
+    "host" : "micro-java-marcknl-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com",
+    "port" : {
+      "targetPort" : 8080
+    },
+    "to" : {
+      "kind" : "Service",
+      "name" : "micro-java",
+      "weight" : 100
+    },
+    "wildcardPolicy" : "None"
+  },
+  "status" : {
+    "ingress" : [ {
+      "conditions" : [ {
+        "lastTransitionTime" : "2024-05-23T12:40:38Z",
+        "status" : "True",
+        "type" : "Admitted"
+      } ],
+      "host" : "micro-java-marcknl-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com",
+      "routerCanonicalHostname" : "router-default.apps.sandbox-m2.ll9k.p1.openshiftapps.com",
+      "routerName" : "default",
+      "wildcardPolicy" : "None"
+    } ]
+  }
+}

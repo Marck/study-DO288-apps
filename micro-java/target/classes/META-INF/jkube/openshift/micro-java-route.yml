@@ -1,0 +1,22 @@
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: micro-config
+    jkube.io/git-url: https://github.com/Marck/study-DO288-apps.git
+    app.openshift.io/vcs-uri: https://github.com/Marck/study-DO288-apps.git
+    jkube.io/git-commit: fea8daa858b4f8b33802fab9a6bd2a8fb92d991d
+    jkube.io/git-branch: micro-config
+  labels:
+    app: micro-java
+    provider: jkube
+    version: "1.0"
+    group: com.redhat.training.openshift.hello
+  name: micro-java
+spec:
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: micro-java
