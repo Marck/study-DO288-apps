@@ -3,14 +3,14 @@
 # Declare variables to be passed into your templates.
 
 env:
-  - name: DB_HOST
-    value: exoplanets-cockroachdb
-  - name: DB_PORT
-    value: 26257
-  - name: DB_USER
-    value: root
-  - name: DB_NAME
-    value: postgres
+  - name: "DB_HOST"
+    value: "exoplanets-cockroachdb"
+  - name: "DB_PORT"
+    value: '26257'
+  - name: "DB_USER"
+    value: "root"
+  - name: "DB_NAME"
+    value: "postgres"
 
 replicaCount: 1
 

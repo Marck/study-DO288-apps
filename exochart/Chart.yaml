@@ -23,7 +23,3 @@ version: 0.1.0
 # It is recommended to use it with quotes.
 appVersion: "1.16.0"
 
-dependencies:
-  - name: cockroachdb
-    repository: https://charts.cockroachdb.com
-    version: 6.0.4
