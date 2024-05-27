@@ -1,0 +1,115 @@
+---
+# Source: exochart/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: exochart
+  labels:
+    helm.sh/chart: exochart-0.1.0
+    app.kubernetes.io/name: exochart
+    app.kubernetes.io/instance: exochart
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+automountServiceAccountToken: true
+---
+# Source: exochart/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: exochart
+  labels:
+    helm.sh/chart: exochart-0.1.0
+    app.kubernetes.io/name: exochart
+    app.kubernetes.io/instance: exochart
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: exochart
+    app.kubernetes.io/instance: exochart
+---
+# Source: exochart/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exochart
+  labels:
+    helm.sh/chart: exochart-0.1.0
+    app.kubernetes.io/name: exochart
+    app.kubernetes.io/instance: exochart
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: exochart
+      app.kubernetes.io/instance: exochart
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: exochart-0.1.0
+        app.kubernetes.io/name: exochart
+        app.kubernetes.io/instance: exochart
+        app.kubernetes.io/version: "1.16.0"
+        app.kubernetes.io/managed-by: Helm
+    spec:
+      serviceAccountName: exochart
+      securityContext:
+        {}
+      containers:
+        - name: exochart
+          securityContext:
+            {}
+          image: "quay.io/redhattraining/exoplanets:v1.0"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+          - name: "DB_HOST"
+            value: "exoplanets-cockroachdb"
+          - name: "DB_PORT"
+            value: "26257"
+          - name: "DB_USER"
+            value: "root"
+          - name: "DB_NAME"
+            value: "postgres"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {}
+---
+# Source: exochart/templates/tests/test-connection.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "exochart-test-connection"
+  labels:
+    helm.sh/chart: exochart-0.1.0
+    app.kubernetes.io/name: exochart
+    app.kubernetes.io/instance: exochart
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['exochart:8080']
+  restartPolicy: Never
